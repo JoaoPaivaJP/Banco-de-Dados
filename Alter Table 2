@@ -1,0 +1,31 @@
+CREATE DATABASE Escola2;
+USE Escola2;
+
+CREATE TABLE alunos (
+    id INT PRIMARY KEY,
+    nome VARCHAR(100),
+    idade INT
+);
+/* Parte 1 */
+ALTER TABLE alunos ADD COLUMN email varchar(150);
+
+ALTER TABLE alunos ADD COLUMN data_nascimento date;
+
+ALTER TABLE alunos MODIFY idade TINYINT;
+
+ALTER TABLE alunos CHANGE nome nome_completo varchar(100);
+
+ALTER TABLE alunos DROP COLUMN idade;
+
+/* Parte 2 */
+ALTER TABLE alunos MODIFY nome_completo varchar(100) NOT NULL;
+
+ALTER TABLE alunos ADD CONSTRAINT unique_email UNIQUE (email); 
+
+/* Parte 3 */
+ALTER TABLE alunos RENAME estudantes;
+
+ALTER TABLE estudantes MODIFY email varchar(150) AFTER nome_completo;
+
+/* Parte 4 */
+ALTER TABLE estudantes DROP INDEX unique_email;
