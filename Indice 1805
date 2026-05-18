@@ -1,0 +1,40 @@
+CREATE DATABASE indice;
+USE indice;
+
+CREATE TABLE alunos (
+    id INT PRIMARY KEY,
+    nome VARCHAR(100),
+    email VARCHAR(100),
+    cidade VARCHAR(100),
+    idade INT
+);
+
+/* 1 */
+CREATE INDEX idx_nome ON alunos(nome);
+
+/* 2 */
+CREATE INDEX idx_cidade ON alunos(cidade);
+
+/* 3 */
+CREATE INDEX idx_cidade_idade ON alunos(cidade, idade);
+
+/* 4 */
+CREATE UNIQUE INDEX idx_email ON alunos(email);
+
+/* 5 */
+SHOW INDEX FROM alunos;
+
+/* 6 */
+DROP INDEX idx_nome ON alunos;
+
+/* 7 */
+DROP INDEX idx_email ON alunos;
+
+/* 8 */
+SELECT * FROM alunos WHERE cidade = 'São Paulo';
+
+/* 9 */
+SELECT * FROM alunos WHERE cidade = 'São Paulo' AND idade = 20;
+
+/* 10 */
+EXPLAIN SELECT * FROM alunos WHERE cidade = 'São Paulo' AND idade = 20;
