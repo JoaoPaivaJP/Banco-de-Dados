@@ -1,0 +1,36 @@
+CREATE DATABASE Aula1506;
+USE Aula1506;
+
+CREATE TABLE funcionarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100),
+    cargo VARCHAR(50),
+    salario DECIMAL(10,2)
+);
+
+INSERT INTO funcionarios(nome, cargo, salario) VALUES 
+("Ana", "Analista", 3500.00),
+("Bruno", "Técnico", 2800.00),
+("Carlos", "Analista", 4200.00),
+("Daniela", "Gerente", 6500.00);
+
+/* 1 */
+DELETE FROM funcionarios WHERE nome = "Bruno";
+
+/* 2 */
+DELETE FROM funcionarios WHERE cargo = "Analista";
+
+/* 3 */
+DELETE FROM funcionarios;
+
+/* 4 */
+DROP TABLE funcionarios;
+
+/* 5 */
+SELECT * FROM funcionarios;
+/* Não funcionciona (da erro, falando que a tabela nao existe), pois a tabela foi apagada */
+
+/* 6 */
+DROP DATABASE Aula1506;
+
+/* O DELETE é usado para deleta os dados de uma tabela, mas mantem sua estrutura. Já o DROP ele é usado para apagar a estrutura, tipon a tabela ou o banco de dados. */
