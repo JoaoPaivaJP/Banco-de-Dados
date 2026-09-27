@@ -1,1 +1,26 @@
+CREATE DATABASE Escola;
 
+USE Escola;
+
+CREATE TABLE Curso (
+IdCurso INT PRIMARY KEY,
+NomeCurso VARCHAR(100) NOT NULL 
+);
+
+CREATE TABLE Aluno (
+IdAluno INT PRIMARY KEY,
+NomeAluno VARCHAR(100) NOT NULL,
+Email VARCHAR(150) NOT NULL UNIQUE,
+IdCurso INT,
+FOREIGN KEY (IdCurso) REFERENCES Curso(IdCurso)
+);
+
+INSERT INTO Curso(IdCurso, NomeCurso) VALUES 
+(1, "Desenvolvimento de Sistemas");
+
+INSERT INTO Aluno(IdAluno, NomeAluno, Email, IdCurso) VALUES 
+(10, "Carlos Silva", "carlos@email.com", 1);
+
+UPDATE Aluno SET Email = 'carlos.silva@email.com' WHERE IdAluno = 10;
+
+DELETE FROM Aluno WHERE IdAluno = 10;
