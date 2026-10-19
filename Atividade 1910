@@ -1,0 +1,91 @@
+CREATE DATABASE IF NOT EXISTS atividade_dql_loja
+    CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE atividade_dql_loja;
+
+CREATE TABLE produto (
+    id_produto INT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    categoria VARCHAR(40) NOT NULL,
+    preco DECIMAL(10,2) NOT NULL,
+    estoque INT NOT NULL,
+    data_cadastro DATE NOT NULL,
+    fornecedor VARCHAR(60) NULL
+);
+
+INSERT INTO produto (id_produto, nome, categoria, preco, estoque, data_cadastro, fornecedor) VALUES
+(1, 'Mouse USB', 'Perifericos', 45, 20, '2026-08-01', 'TechSul'),
+(2, 'Teclado USB', 'Perifericos', 80, 15, '2026-08-03', 'TechSul'),
+(3, 'Mouse sem fio', 'Perifericos', 95, 0, '2026-08-05', NULL),
+(4, 'Webcam HD', 'Perifericos', 150, 8, '2026-08-07', 'DigitalMais'),
+(5, 'Headset', 'Perifericos', 120, 12, '2026-09-01', 'DigitalMais'),
+(6, 'Teclado mecanico', 'Perifericos', 250, 5, '2026-09-10', 'TechSul'),
+(7, 'Monitor 22', 'Monitores', 650, 6, '2026-08-02', 'TelaBoa'),
+(8, 'Monitor 24', 'Monitores', 850, 4, '2026-08-10', 'TelaBoa'),
+(9, 'Monitor 27', 'Monitores', 1200, 0, '2026-09-02', NULL),
+(10, 'Monitor 19', 'Monitores', 500, 3, '2026-09-05', 'TelaBoa'),
+(11, 'Monitor 29', 'Monitores', 1500, 2, '2026-09-12', 'DigitalMais'),
+(12, 'Monitor 32', 'Monitores', 1800, 1, '2026-10-01', 'DigitalMais'),
+(13, 'Cabo HDMI', 'Acessorios', 30, 40, '2026-08-04', 'Conecta'),
+(14, 'Cabo USB', 'Acessorios', 20, 50, '2026-08-06', 'Conecta'),
+(15, 'Adaptador USB', 'Acessorios', 40, 0, '2026-09-03', NULL),
+(16, 'Suporte notebook', 'Acessorios', 100, 10, '2026-09-08', 'Conecta'),
+(17, 'Mousepad', 'Acessorios', 25, 30, '2026-09-15', 'TechSul'),
+(18, 'Hub USB', 'Acessorios', 85, 7, '2026-10-02', 'Conecta'),
+(19, 'SSD 240 GB', 'Armazenamento', 180, 10, '2026-08-08', 'MemoriaMais'),
+(20, 'SSD 480 GB', 'Armazenamento', 300, 8, '2026-08-12', 'MemoriaMais'),
+(21, 'HD 1 TB', 'Armazenamento', 280, 5, '2026-09-04', 'MemoriaMais'),
+(22, 'Pendrive 32 GB', 'Armazenamento', 35, 25, '2026-09-11', 'Conecta'),
+(23, 'Cartao 64 GB', 'Armazenamento', 60, 15, '2026-09-20', NULL),
+(24, 'SSD 1 TB', 'Armazenamento', 500, 4, '2026-10-03', 'MemoriaMais');
+
+SELECT COUNT(*) AS total_produtos FROM produto;
+
+SELECT id_produto, nome
+FROM produto
+ORDER BY id_produto DESC
+LIMIT 3;
+
+SELECT id_produto
+FROM produto
+WHERE preco > 1000
+ORDER BY id_produto;
+
+SELECT DISTINCT categoria
+FROM produto
+ORDER BY categoria;
+
+SELECT id_produto
+FROM produto
+WHERE preco BETWEEN 80 AND 120
+ORDER BY id_produto;
+
+SELECT id_produto
+FROM produto
+WHERE nome LIKE 'Mouse%'
+ORDER BY id_produto;
+
+SELECT COUNT(*) AS sem_fornecedor
+FROM produto
+WHERE fornecedor IS NULL;
+
+SELECT id_produto
+FROM produto
+WHERE categoria = 'Perifericos' AND estoque > 0
+ORDER BY preco DESC, id_produto
+LIMIT 2;
+
+Select COUNT(*) AS total,
+ COUNT(fornecedor) AS informados
+FROM produto;
+
+SELECT SUM(estoque) AS total_estoque
+FROM produto
+WHERE categoria = 'Acessorios';
+
+SELECT MIN(preco) AS menor, MAX(preco) AS maior,
+ ROUND(AVG(preco), 2) AS media
+FROM produto
+WHERE categoria = 'Armazenamento';
+
+SELECT Nome, Preco 
+FROM Acessorios 
