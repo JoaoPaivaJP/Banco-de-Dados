@@ -112,3 +112,41 @@ SELECT nome, preco, estoque, (preco * estoque) AS valor_estoque
 FROM produto
 ORDER BY estoque DESC, id_produto ASC
 LIMIT 3;
+
+SELECT
+    COUNT(*) AS quantidade_produtos,
+    SUM(estoque) AS total_unidades_estoque,
+    MIN(preco) AS menor_preco,
+    MAX(preco) AS maior_preco,
+    ROUND(AVG(preco), 2) AS preco_medio
+FROM produto;
+
+SELECT
+    COUNT(*) AS total_produtos,
+    COUNT(fornecedor) AS produtos_com_fornecedor,
+    COUNT(DISTINCT fornecedor) AS fornecedores_diferentes
+FROM produto;
+
+SELECT
+    COUNT(*) AS quantidade_produtos,
+    MIN(preco) AS menor_preco,
+    MAX(preco) AS maior_preco,
+    ROUND(AVG(preco), 2) AS media_precos
+FROM produto
+WHERE categoria = 'Monitores'
+  AND estoque > 0;
+  
+SELECT
+    COUNT(*) AS quantidade_produtos,
+    SUM(estoque) AS total_unidades_estoque,
+    SUM(preco * estoque) AS valor_financeiro_total
+FROM produto
+WHERE estoque > 0;
+
+SELECT
+    COUNT(*) AS quantidade_produtos,
+    SUM(estoque) AS total_unidades_estoque,
+    ROUND(AVG(preco), 2) AS preco_medio,
+    SUM(preco * estoque) AS valor_financeiro_total
+FROM produto
+WHERE fornecedor = 'TechSul';
