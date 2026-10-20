@@ -87,5 +87,28 @@ SELECT MIN(preco) AS menor, MAX(preco) AS maior,
 FROM produto
 WHERE categoria = 'Armazenamento';
 
-SELECT Nome, Preco 
-FROM Acessorios 
+SELECT nome, preco
+FROM produto
+WHERE categoria = 'Acessorios'
+ORDER BY preco ASC, id_produto ASC;
+
+SELECT id_produto, nome, estoque
+FROM produto
+WHERE estoque BETWEEN 1 AND 5
+  AND preco >= 250
+ORDER BY id_produto ASC;
+
+SELECT id_produto, nome, categoria
+FROM produto
+WHERE (categoria = 'Monitores' OR categoria = 'Armazenamento')
+  AND estoque = 0
+ORDER BY id_produto ASC;
+
+SELECT COUNT(*) AS total_produtos
+FROM produto
+WHERE data_cadastro BETWEEN '2026-09-01' AND '2026-09-30';
+
+SELECT nome, preco, estoque, (preco * estoque) AS valor_estoque
+FROM produto
+ORDER BY estoque DESC, id_produto ASC
+LIMIT 3;
